@@ -1,2 +1,2 @@
 # infolinux
-Shellscript para informações do Linux
+Shellscript para capturar informações básicas do Linux.
