@@ -36,6 +36,8 @@ echo "Processadores:"
 echo -e "\033[1;33m" $(cat /proc/cpuinfo | grep processor | wc -l) "\033[0m"
 echo "Memória Total:"
 echo -e "\033[1;33m" $(expr `free -m | grep Mem | cut -d " " -f 11` / 1024)Gb "\033[0m"
+echo "Uptime"
+echo -e "\033[1;33m" $(uptime | cut -d " " -f 4,5 | sed 's/.$//') "\033[0m"
 echo "Distribuição: "
 if [ -f "/etc/redhat-release" ]
 then
@@ -45,13 +47,19 @@ else
 fi
 echo "Versão do Kernel:"
 echo -e "\033[1;33m" $(uname -r) "\033[0m"
+echo "Pacotes instalados:"
+if [ -f "/etc/redhat-release" ]
+then
+      echo -e "\033[1;33m" $(rpm -qa | wc -l) "\033[0m"
+else
+      echo -e "\033[1;33m" $(dpkg -l | wc -l) "\033[0m"
+fi
+echo "Espaço em disco:"
 disco=`df -m | grep '/$' | cut -d ' ' -f 1 | cut -c -8`
 if [ -f "/etc/redhat-release" ]
 then
-     echo "Espaço em disco:"
      echo -e "\033[1;33m" $(fdisk -l $disco | head -2 | cut -d " " -f 3,4 | sed 's/.$//') "\033[0m"
 else
-     echo "Espaço em disco:"
      echo -e "\033[1;33m" $(fdisk -l $disco | head -1 | cut -d " " -f 3,4 | sed 's/.$//') "\033[0m"
 fi
 echo "Usuários do sistema:"
