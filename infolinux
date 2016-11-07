@@ -13,7 +13,7 @@
 #                 para corrigir
 #===============================================================================
 
-# Checka se é usuário root
+# Checa se é usuário root
 if [ "$(id -u)" != "0" ]; then
    echo " "
    echo "Você precisa rodar este script como super usuário!" 1>&2
