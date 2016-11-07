@@ -4,22 +4,24 @@
 #descrição       :Script para capturar informações básicas do Linux
 #autor           :Cleber S Leite ( clebersleite@gmail.com )
 #data            :14/12/2015
-#versão          :1.0    
+#versão          :1.0
 #uso             :infolinux
 #notas           :Precisa do comando CURL.
 #licença         :GPL3
-#Observação      :Caso o script apresente erro de caractere,use o comando: 
-#                 dos2unix NOME_DO_SCRIPT 
-#                 para corrigir 
+#Observação      :Caso o script apresente erro de caractere,use o comando:
+#                 dos2unix NOME_DO_SCRIPT
+#                 para corrigir
 #===============================================================================
- 
+
+# Checka se é usuário root
 if [ "$(id -u)" != "0" ]; then
    echo " "
    echo "Você precisa rodar este script como super usuário!" 1>&2
    echo " "
    exit 1
 fi
- 
+
+# Verifica a existência do CURL
 if which curl > /dev/null; then
     echo ""
 else
@@ -28,7 +30,8 @@ else
     echo ""
     exit 1
 fi
- 
+
+# Captura as informações
 echo ""
 echo "Informações do Linux:"
 echo "========================"
